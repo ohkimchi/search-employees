@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-eslint-rules"],
+  "rules": {
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single", "jsx-single"],
+    "object-curly-spacing": true,
+    "array-bracket-spacing": [true, "never"],
+    "trailing-comma": false,
+    "indent": [true, "spaces", 2],
+    "no-shadowed-variable": false,
+    "object-literal-sort-keys": true
+  },
+  "files.associations": {
+    "tslint.json": "json"
+  }
+}
