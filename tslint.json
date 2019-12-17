@@ -11,6 +11,16 @@
     "no-shadowed-variable": false,
     "object-literal-sort-keys": true
   },
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true
+  },
+  "include": ["source"],
   "files.associations": {
     "tslint.json": "json"
   }
