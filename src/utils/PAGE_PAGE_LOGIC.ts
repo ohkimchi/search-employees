@@ -1,5 +1,5 @@
-import Search from "../Components/Search"
-import Result from "../Components/Result"
+import Result from '../Components/Result'
+import Search from '../Components/Search'
 
 interface IServie {
   [pageName: string]: any
