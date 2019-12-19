@@ -1,13 +1,35 @@
+import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import InputBase from '@material-ui/core/InputBase'
 import Paper from '@material-ui/core/Paper'
 import SearchIcon from '@material-ui/icons/Search'
 import { debounce } from 'lodash'
 import React, { FC, useContext, useState } from 'react'
-import { ActionType, Context } from '../../App/AppReducer'
-import { getDirectSub } from '../../utils/directSub'
-import './_search.scss'
-import { useStyles } from './SearchReducer'
+import { ActionType, Context } from '../App/AppReducer'
+import { getDirectSub } from '../utils/directSub'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      width: 300,
+      margin: 'auto'
+    },
+    input: {
+      marginLeft: theme.spacing(1),
+      flex: 1
+    },
+    iconButton: {
+      padding: 10
+    },
+    divider: {
+      height: 28,
+      margin: 4
+    }
+  })
+)
 
 const Search: FC = () => {
   const classes = useStyles()

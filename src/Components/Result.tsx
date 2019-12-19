@@ -1,9 +1,21 @@
+import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import React, { FC, useContext } from 'react'
-import { Context } from '../../App/AppReducer'
-import './_result.scss'
-import { useStyles } from './ResultReducer'
+import { Context } from '../App/AppReducer'
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      maxWidth: 752
+    },
+    demo: {
+      backgroundColor: theme.palette.background.paper,
+      width: '85%',
+      margin: 'auto'
+    }
+  })
+)
 function generate(directSub: string[]) {
   return directSub.map((name, i) => <div key={`${name}-${i}`}>{name}</div>)
 }
