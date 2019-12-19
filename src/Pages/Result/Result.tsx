@@ -1,15 +1,10 @@
-import Grid from "@material-ui/core/Grid"
-import React, { FC, useContext } from "react"
-import { Context } from "../../App/AppReducer"
-import { useStyles } from "./ResultReducer"
-import "./_result.scss"
+import Grid from '@material-ui/core/Grid'
+import React, { FC, useContext } from 'react'
+import { Context } from '../../App/AppReducer'
+import './_result.scss'
+import { useStyles } from './ResultReducer'
 
-// const data = [
-//   "Samad Pitt",
-//   "Leanna Hogg"
-// ]
-
-function generate(directSub: Array<string>) {
+function generate(directSub: string[]) {
   return directSub.map((name, i) => <div key={`${name}-${i}`}>{name}</div>)
 }
 
@@ -22,7 +17,7 @@ const Result: FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <p>Employee Overview</p>
-          {state.employeeName !== "" && (
+          {state.employeeName !== '' && (
             <div className={classes.demo}>
               <p>Subordinates of employee {state.employeeName}</p>
               <div>{generate(state.directSub)}</div>

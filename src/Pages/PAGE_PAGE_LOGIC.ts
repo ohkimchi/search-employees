@@ -1,5 +1,5 @@
-import Search from "./Search/Search"
-import Result from "./Result/Result"
+import Result from './Result/Result'
+import Search from './Search/Search'
 
 interface IServie {
   [pageName: string]: any

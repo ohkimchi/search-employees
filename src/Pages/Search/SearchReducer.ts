@@ -1,13 +1,13 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core"
+import { createStyles, makeStyles, Theme } from '@material-ui/core'
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      padding: "2px 4px",
-      display: "flex",
-      alignItems: "center",
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
       width: 300,
-      margin: "auto"
+      margin: 'auto'
     },
     input: {
       marginLeft: theme.spacing(1),

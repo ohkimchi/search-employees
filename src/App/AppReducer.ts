@@ -1,22 +1,22 @@
-import { createContext, Dispatch } from "react"
+import { createContext, Dispatch } from 'react'
 
 export interface IAction {
   currentPage?: string
-  directSub?: Array<string>
+  directSub?: string[]
   employeeName?: string
   type: ActionType
 }
 
 export enum ActionType {
-  SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
-  SET_DIRECT_SUB = "SET_DIRECT_SUB",
-  SET_EMPLOYEE_NAME = "SET_EMPLOYEE_NAME"
+  SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
+  SET_DIRECT_SUB = 'SET_DIRECT_SUB',
+  SET_EMPLOYEE_NAME = 'SET_EMPLOYEE_NAME'
 }
 
 export const initialState = {
-  currentPage: "SearchPage",
-  directSub: [""],
-  employeeName: ""
+  currentPage: 'SearchPage',
+  directSub: [''],
+  employeeName: ''
 }
 
 interface IContextProps {
