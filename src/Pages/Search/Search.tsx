@@ -37,8 +37,8 @@ const Search: FC = () => {
       <Paper component="form" className={classes.root}>
         <InputBase
           className={classes.input}
-          placeholder="Search Google Maps"
-          inputProps={{ "aria-label": "search google maps" }}
+          placeholder="Search Employee Name"
+          inputProps={{ "aria-label": "search employee name" }}
         />
         <IconButton
           type="submit"

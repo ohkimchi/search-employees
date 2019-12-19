@@ -1,12 +1,18 @@
-import React from "react"
+import React, { useReducer } from "react"
+import { PAGE_LOGIC } from "../Pages/PAGE_PAGE_LOGIC"
 import "./App.css"
-import Search from "../Pages/Search/Search"
+import { Context, initialState, Reducer } from "./AppReducer"
 
 const App: React.FC = () => {
+  const [state, dispatch] = useReducer(Reducer, initialState)
+  const Compo = PAGE_LOGIC[state.currentPage]
+
   return (
-    <div className="App">
-      <Search />
-    </div>
+    <Context.Provider value={{ state, dispatch }}>
+      <div className="App">
+        <Compo />
+      </div>
+    </Context.Provider>
   )
 }
 
