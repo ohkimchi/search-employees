@@ -3,8 +3,10 @@ import InputBase from "@material-ui/core/InputBase"
 import Paper from "@material-ui/core/Paper"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import SearchIcon from "@material-ui/icons/Search"
-import React, { FC } from "react"
+import React, { FC, useContext, useEffect } from "react"
 import "./_search.scss"
+import { Context } from "../../App/AppReducer"
+import { API } from "../../utils/api"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,6 +33,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Search: FC = () => {
   const classes = useStyles()
+  const { state, dispatch } = useContext(Context)
+
+  async function getRes() {
+    const res = await API.get(
+      dispatch,
+      "http://api.additivasia.io/api/v1/assignment/employees"
+    )
+    console.log("res", res)
+  }
+
+  useEffect(() => {
+    getRes()
+  })
 
   return (
     <div className="search-page">
