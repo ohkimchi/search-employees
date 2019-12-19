@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     demo: {
       backgroundColor: theme.palette.background.paper,
-      width: "50%",
+      width: "85%",
       margin: "auto"
     }
   })
