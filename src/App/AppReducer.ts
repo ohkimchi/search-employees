@@ -2,15 +2,21 @@ import { createContext, Dispatch } from "react"
 
 export interface IAction {
   currentPage?: string
+  directSub?: Array<string>
+  employeeName?: string
   type: ActionType
 }
 
 export enum ActionType {
-  SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
+  SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
+  SET_DIRECT_SUB = "SET_DIRECT_SUB",
+  SET_EMPLOYEE_NAME = "SET_EMPLOYEE_NAME"
 }
 
 export const initialState = {
-  currentPage: "SearchPage"
+  currentPage: "SearchPage",
+  directSub: [""],
+  employeeName: ""
 }
 
 interface IContextProps {
@@ -26,6 +32,16 @@ export function Reducer(state: any, action: IAction) {
       return {
         ...state,
         currentPage: action.currentPage
+      }
+    case ActionType.SET_DIRECT_SUB:
+      return {
+        ...state,
+        directSub: action.directSub
+      }
+    case ActionType.SET_EMPLOYEE_NAME:
+      return {
+        ...state,
+        employeeName: action.employeeName
       }
     default:
       return state
