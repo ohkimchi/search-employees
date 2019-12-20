@@ -22,24 +22,26 @@ export async function API(url: string) {
   }
 }
 
-const oriUrl = 'http://api.additivasia.io/api/v1/assignment/employees'
+const oriUrl = 'https://api.additivasia.io/api/v1/assignment/employees'
 
 export async function getDirectSub(name: string) {
   const url = `${oriUrl}/${name}`
   const dirSubRes = await API(url)
     // tslint:disable-next-line: no-console
-    .catch((err) => console.log('no result'))
-    .then((res) => res)
+    .catch(err => console.log('no result'))
+    .then(res => res)
   if (dirSubRes) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [role, dirSubObj] = dirSubRes as any
-    return dirSubObj['direct-subordinates']
+    if (dirSubObj && dirSubObj['direct-subordinates']) {
+      return dirSubObj['direct-subordinates']
+    }
   }
 }
 
 export async function getNonDirectSub(subArr: string[], res: any) {
   await Promise.all(
-    subArr.map(async (p) => {
+    subArr.map(async p => {
       if (!res.includes(p)) {
         const ds = await getDirectSub(p)
         if (ds) {

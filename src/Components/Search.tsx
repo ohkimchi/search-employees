@@ -76,7 +76,7 @@ const Search: FC = () => {
 
   return (
     <div className='search-page'>
-      <p>Employee Explorer</p>
+      <h1>Employee Explorer</h1>
       <Paper component='form' className={classes.root}>
         <InputBase
           className={classes.input}
