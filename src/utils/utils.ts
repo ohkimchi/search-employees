@@ -6,8 +6,8 @@ interface IServie {
 }
 
 export const PAGE_LOGIC: IServie = {
-  SearchPage: Search,
-  ResultPage: Result
+  ResultPage: Result,
+  SearchPage: Search
 }
 
 export async function API(url: string) {
@@ -27,9 +27,11 @@ const oriUrl = 'http://api.additivasia.io/api/v1/assignment/employees'
 export async function getDirectSub(name: string) {
   const url = `${oriUrl}/${name}`
   const dirSubRes = await API(url)
+    // tslint:disable-next-line: no-console
     .catch((err) => console.log('no result'))
     .then((res) => res)
   if (dirSubRes) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [role, dirSubObj] = dirSubRes as any
     return dirSubObj['direct-subordinates']
   }

@@ -5,14 +5,14 @@ import { Context } from '../App/AppReducer'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    demo: {
+      backgroundColor: theme.palette.background.paper,
+      margin: 'auto',
+      width: '85%'
+    },
     root: {
       flexGrow: 1,
       maxWidth: 752
-    },
-    demo: {
-      backgroundColor: theme.palette.background.paper,
-      width: '85%',
-      margin: 'auto'
     }
   })
 )
@@ -22,7 +22,7 @@ function generate(directSub: string[]) {
 
 const Result: FC = () => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(Context)
+  const { state } = useContext(Context)
 
   return (
     <div className={classes.root}>
