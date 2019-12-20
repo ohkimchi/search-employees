@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import { debounce } from 'lodash'
 import React, { FC, useContext, useState } from 'react'
 import { ActionType, Context } from '../App/AppReducer'
-import { getDirectSub } from '../utils/directSub'
+import { getDirectSub } from '../utils/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

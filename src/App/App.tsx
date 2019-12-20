@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { PAGE_LOGIC } from '../utils/PAGE_PAGE_LOGIC'
+import { PAGE_LOGIC } from '../utils/utils'
 import './App.css'
 import { Context, initialState, Reducer } from './AppReducer'
 
