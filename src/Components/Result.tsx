@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 function generate(directSub: string[]) {
-  return directSub.map((name, i) => <div key={`${name}-${i}`}>{name}</div>)
+  return directSub.map((name, i) => <p key={`${name}-${i}`}>{name}</p>)
 }
 
 const Result: FC = () => {
@@ -30,9 +30,15 @@ const Result: FC = () => {
         <Grid item xs={12} md={6}>
           <p>Employee Overview</p>
           {state.employeeName !== '' && (
-            <div className={classes.demo}>
-              <p>Subordinates of employee {state.employeeName}</p>
-              <div>{generate(state.directSub)}</div>
+            <div>
+              <div className={classes.demo}>
+                <p>Subordinates of employee {state.employeeName}</p>
+                <div>{generate(state.directSub)}</div>
+              </div>
+              <div className={classes.demo}>
+                <p>Non-direct subordinates of employee {state.employeeName}</p>
+                <div>{generate(state.nonDirectSub)}</div>
+              </div>
             </div>
           )}
         </Grid>

@@ -4,19 +4,22 @@ export interface IAction {
   currentPage?: string
   directSub?: string[]
   employeeName?: string
+  nonDirectSub?: string[] | []
   type: ActionType
 }
 
 export enum ActionType {
   SET_CURRENT_PAGE = 'SET_CURRENT_PAGE',
   SET_DIRECT_SUB = 'SET_DIRECT_SUB',
+  SET_NON_DIRECT_SUB = 'SET_NON_DIRECT_SUB',
   SET_EMPLOYEE_NAME = 'SET_EMPLOYEE_NAME'
 }
 
 export const initialState = {
   currentPage: 'SearchPage',
   directSub: [''],
-  employeeName: ''
+  employeeName: '',
+  nonDirectSub: []
 }
 
 interface IContextProps {
@@ -37,6 +40,11 @@ export function Reducer(state: any, action: IAction) {
       return {
         ...state,
         directSub: action.directSub
+      }
+    case ActionType.SET_NON_DIRECT_SUB:
+      return {
+        ...state,
+        nonDirectSub: action.nonDirectSub
       }
     case ActionType.SET_EMPLOYEE_NAME:
       return {

@@ -3,10 +3,9 @@ import IconButton from '@material-ui/core/IconButton'
 import InputBase from '@material-ui/core/InputBase'
 import Paper from '@material-ui/core/Paper'
 import SearchIcon from '@material-ui/icons/Search'
-import { debounce } from 'lodash'
 import React, { FC, useContext, useState } from 'react'
 import { ActionType, Context } from '../App/AppReducer'
-import { getDirectSub } from '../utils/utils'
+import { getDirectSub, getNonDirectSub } from '../utils/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,18 +28,34 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Search: FC = () => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(Context)
+  const { dispatch } = useContext(Context)
   const [name, setName] = useState('')
   const [showReminder, setShowReminder] = useState(false)
+  const [showNoResult, setNoResult] = useState(false)
 
-  const handleOnChange = debounce(async (name: string) => {
+  const handleOnChange = (name: string) => {
+    setName(name)
     if (name !== '') {
-      setName(name)
-      const dirSubRes = await getDirectSub(name)
-      // console.log(dirSubRes)
-      if (dirSubRes) {
-        const [role, dirSubObj] = dirSubRes as any
-        const subArr = dirSubObj['direct-subordinates']
+      setShowReminder(false)
+    }
+    setNoResult(false)
+  }
+
+  async function handleOnClick(e: any) {
+    e.preventDefault()
+
+    if (name === '') {
+      setShowReminder(true)
+    } else {
+      const subArr = await getDirectSub(name)
+      if (subArr) {
+        const nonDirSubArr = await getNonDirectSub(subArr, [])
+        if (nonDirSubArr !== []) {
+          dispatch({
+            nonDirectSub: nonDirSubArr,
+            type: ActionType.SET_NON_DIRECT_SUB
+          })
+        }
         dispatch({
           directSub: subArr,
           type: ActionType.SET_DIRECT_SUB
@@ -49,21 +64,13 @@ const Search: FC = () => {
           employeeName: name,
           type: ActionType.SET_EMPLOYEE_NAME
         })
+        dispatch({
+          currentPage: 'ResultPage',
+          type: ActionType.SET_CURRENT_PAGE
+        })
+      } else {
+        setNoResult(true)
       }
-    }
-  }, 300)
-
-  function handleOnClick(e: any) {
-    e.preventDefault()
-    if (name === '') {
-      setShowReminder(true)
-    } else {
-      // setShowReminder(false)
-      console.log('name', name)
-      dispatch({
-        currentPage: 'ResultPage',
-        type: ActionType.SET_CURRENT_PAGE
-      })
     }
   }
 
@@ -87,6 +94,7 @@ const Search: FC = () => {
         </IconButton>
       </Paper>
       {showReminder && <p>You should key in something then search.</p>}
+      {showNoResult && <p>There is no person called {name}</p>}
     </div>
   )
 }
