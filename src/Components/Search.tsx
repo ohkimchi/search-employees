@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import SearchIcon from '@material-ui/icons/Search'
 import React, { FC, useContext, useState } from 'react'
 import { ActionType, Context } from '../App/AppReducer'
-import { getDirectSub, getNonDirectSub } from '../utils/utils'
+import { getDirectSub, getNonDirectSub } from "../utils/utils"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,17 +28,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Search: FC = () => {
   const classes = useStyles()
-  const { dispatch } = useContext(Context)
+  const { state, dispatch } = useContext(Context)
   const [name, setName] = useState('')
   const [showReminder, setShowReminder] = useState(false)
-  const [showNoResult, setNoResult] = useState(false)
 
   const handleOnChange = (name: string) => {
     setName(name)
     if (name !== '') {
       setShowReminder(false)
     }
-    setNoResult(false)
+    dispatch({
+      noResult: false,
+      type: ActionType.SET_NO_RESULT
+    })
   }
 
   async function handleOnClick(e: any) {
@@ -69,7 +71,10 @@ const Search: FC = () => {
           type: ActionType.SET_CURRENT_PAGE
         })
       } else {
-        setNoResult(true)
+        dispatch({
+          noResult: true,
+          type: ActionType.SET_NO_RESULT
+        })
       }
     }
   }
@@ -93,8 +98,8 @@ const Search: FC = () => {
           <SearchIcon />
         </IconButton>
       </Paper>
-      {showReminder && <p>You should key in something then search.</p>}
-      {showNoResult && <p>There is no person called {name}</p>}
+      {showReminder && <p>You should at least key in something then search.</p>}
+      {state.noResult && <p>There is no person called {name}</p>}
     </div>
   )
 }

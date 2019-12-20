@@ -17,23 +17,22 @@ function generate(directSub: string[]) {
   return directSub.map((name, i) => <p key={`${name}-${i}`}>{name}</p>)
 }
 
-const Result: FC = () => {
+const ResultForShare: FC = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(Context)
   const history = useHistory()
   const employeeName = history.location.pathname.split('/').splice(-1)[0]
 
-  // useEffect(() => {
-  //   if (state.employeeName === '' && employeeName !== '') {
-  //     dispatch({
-  //       employeeName,
-  //       type: ActionType.SET_EMPLOYEE_NAME
-  //     })
-  //     getDirAndUnDirSub(employeeName, dispatch)
-  //   }
+  useEffect(() => {
+    if (state.employeeName === '' && employeeName !== '') {
+      dispatch({
+        employeeName,
+        type: ActionType.SET_EMPLOYEE_NAME
+      })
+      getDirAndUnDirSub(employeeName, dispatch)
+    }
 
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [employeeName])
+  }, [state.employeeName, history, employeeName, dispatch])
 
   return (
     <div>
@@ -56,4 +55,4 @@ const Result: FC = () => {
   )
 }
 
-export default Result
+export default ResultForShare
