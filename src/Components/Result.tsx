@@ -1,8 +1,6 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
-import React, { FC, useContext, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { ActionType, Context } from '../App/AppReducer'
-import { getDirAndUnDirSub } from '../utils/utils'
+import React, { FC, useContext } from 'react'
+import { Context } from '../App/AppReducer'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,21 +17,7 @@ function generate(directSub: string[]) {
 
 const Result: FC = () => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(Context)
-  const history = useHistory()
-  const employeeName = history.location.pathname.split('/').splice(-1)[0]
-
-  // useEffect(() => {
-  //   if (state.employeeName === '' && employeeName !== '') {
-  //     dispatch({
-  //       employeeName,
-  //       type: ActionType.SET_EMPLOYEE_NAME
-  //     })
-  //     getDirAndUnDirSub(employeeName, dispatch)
-  //   }
-
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [employeeName])
+  const { state } = useContext(Context)
 
   return (
     <div>

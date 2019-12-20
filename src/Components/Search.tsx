@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import SearchIcon from '@material-ui/icons/Search'
 import React, { FC, useContext, useState } from 'react'
 import { ActionType, Context } from '../App/AppReducer'
-import { getDirectSub, getNonDirectSub } from "../utils/utils"
+import { getDirectSub, getNonDirectSub } from '../utils/utils'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

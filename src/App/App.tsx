@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
-import ResultForShare from "../Components/ResultForShare"
+import ResultForShare from '../Components/ResultForShare'
 import { PAGE_LOGIC } from '../utils/utils'
 import './App.css'
 import { Context, initialState, Reducer } from './AppReducer'
